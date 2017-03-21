@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Labiot2</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/creative.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body id="page-top">
+	</br>
+	</br>
+	</br>
+	</br>
+<center> <a href="index.html" class="btn btn-primary btn-xl page-scroll">Retour Accueil</a></center>
+
+<section id="Accueil">
+        <div class="header-content">
+            <div class="header-content-inner">
+<div class="container">
+  <div class="jumbotron">
+  <center>  <h1>Labiot2</h1> </center>
+  </br>
+	</br>
+	</br>
+	</br>
+    <p><b>Présentaion</b> : </br>Labiot2 est le nom du projet que j'ai réalisé lors du stage de 1ere année de BTS Slam. Ce projet m'avais été proposé par le sous directeur du service dans lequel je me trouvais. 
+	 Il m'avais confié la mission de réalisé un graphique montrant l'évolution de la température et de l'humidité en focntion du temps.
+	 J'avais à disposition une base de donnée dans laquelle ce trouvait les données de température émisent par une sonde Lawrence qui se trouvait sur le toit du batiment.
+	Pour répondre au besoin,j'ai donc fais le choix de concevoir une application PHP qui prend en arguement la période sur laquelle le graphe doit ce crée.
+	</p>
+	</br>
+	
+	
+	<p>Aperçu du graphe: </p>
+	<img src="img/labiot2.png" class="img-responsive" alt="">
+	</br>
+	
+	<p><b>Fonctionnement de l'application : </b>
+	</br>
+	</br>
+		Pour réaliser ce projet, j'ai du faire un réel travail personnel de recherche afin de chercher comment pouvoir réaliser une structure graphique en php.
+		Egalement, j'ai du faire des 
+	modifications au niveau de la base de donnée afin que le graphique devienne possible à la réalisation. J'ai créer une table "moyenne" dans laquelle j'y insert les moyennes de température par jour.
+	</br>
+	</br>
+
+		<img src="img/labiot2 bdd.png" class="img-responsive" alt="">
+		</br>
+	Afin de pouvoir génerer le graph à partir des données récupérées j'ai d'abord essayer plusieurs solutions avant de trouver celle qui convenait. En effet, je suis tomber sur le site de ELLIOT Bruggeman qui est un développeur de logiciel vivant à Seattle dans lequel on peux trouver des codes sources pour différent
+		types de graphiques dont voici le lien  <a href="http://www.ebrueggeman.com/phpgraphlib" target="_blank"> ici </a>. J'ai donc télécharger la librairie qui m'intéressais. A savoir "PHPGRAPHLIB" dont le lien ce trouve plus bas. </br>
+		Cette librairie permet de génerer le graphique d'une manière plutôt simple. Dans la page de création du graphe, il suffit d'initaliser les options avec les valeurs souhaitées (couleur , valeur des variables).</br> </br>
+		<img src="img/labiot2code.png" class="img-responsive" alt=""> </br>
+		A partir 
+		d'une Data table, l'outil nous génère le graphique automatiquement à la fin du traitement.
+
+
+
+
+	</p>
+	
+	
+
+		
+  </div> 
+  </div>
+  </div>
+ </div>
+ </section>
+
+<!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/creative.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+*****************************DOC TECHNIQUE APPREPORT_ATHLON*******************************
+
+//////**Principe de L'application**\\\\\\
+
+Le principe de l'application se résume à pouvoir , à l'aide d'une interface WindowsForm réalisé en C# , rechercher dans des reports et dans des procédures stockées ( dont les chemins d'accès/ connection
+sont passés en paramètres dans les ressources du projet) une donnée recherchée. 
+
+
+
+
+
+Une Solution " AppReport_Athlon", composée de deux projets
+
+- AppReport_Athlon (entièrement crée par moi)
+
+- RptToXml (fournis par Crystal Report )
+
+
+
+****************Projet AppReport_Athlon*************************
+
+Utilisation des Ressources dans les propriétés du projet ( tel que la chaine de connection a la base de donnée, les chemins d'accès au Reports, Requete SQL...)
+Une feuille WindowsForm(FormRecherche)
+Une classe fonction (fonction.cs)
+
+Les composants de FormRecherche :
+
+		Nom Composant			TypeComposant			DescriptionComposant
+
+		txtRecherche			TextBox				C'est le champ de recherche dans lequel l'utilisateur va saisir sa recherche (libre au niveau des caractères d'entré)
+
+		cboEnvironnement		ComboBox			Liste combo dans laquelle l'utilisateur choisit l'environnemenent de recherche (développement , Acceptance, Production) 
+
+		txtEmplacement			TextBox				C'est le champ dans lequel l'utilisateur va choisir l'emplacement de sortie de son résultat de recherche via le boutton Emplacement (voir si dessous)
+		
+		chkEtatsActifs			CheckBox			Permet de filtrer la recherche sur les EtatsActifs (On entend par là les reports utilisés sur la plateforme Sequana)
+
+		chkEtat				CheckBox			Précise la zone de recherche pour la valeur saisie (la recherche va s'effectuer dans les Reports dont le chemin est préciser dans les Ressources)
+
+		chkBdd 				CheckBox			Précise la zone de recherche pour la valeur saisie (la recherche va s'effectuer dans les Procédure stockées de la bdd)
+
+		chkCsv				CheckBox			Prend en compte le fait de sortir le resultat obtenu, quelque soit la(les) zone(s) de recherche sélectionnée(s), dans un fichier Text
+
+		chkCopie			CheckBox			Prend en compte le fait de copier les fichier correspondant à la recherche dans l'emplacement séléctionné (les reports ou/et les prostock extraitent de la bbd)
+
+		btnEmplacement			Button				Permet d'ouvrirle folderBrowserDialog1 pour choisir l'emplacement de sortie qui se mettra automatiquement dans txtEmplacement
+		
+		BtnValider			Button				Le bouton valider  va lancer tout le traitement selon les paramètres de recherche choisit.
+		
+		FolderBrowserDialog1		FolderBrowserDialog		C'est l'interface qui permet de choisir l'emplacement de sortie lors du click btnEmplacement
+
+		StatusStrip1			StatusStrip			Permet de gérer une progress bar à l'aide d'un background worker pour informer de l'avancement du traitement.
+
+		PBlogo				PictureBox			Emplacement pour le logo Athlon.
+
+
+
+
+
+**//Fonctionnement détaillé (technique) de l'application//**
+
+Le principe technique de l'application se déroule en deux temps . Le premier qui est la récupération des données que l'utilisateur à saisit dans le WindowsForm FormRecherche afin de pouvoir les stocker
+dans des variables et ainsi préparer le traitement selon les options choisies. Puis on va appeler la fonction de traitement de la recherche avec les filtres et les options en paramètre.
+
+
+Le déroulement du processus commence donc dans le FormRecherche. Tout le traitement sera encadré par un background worker afin de donné un aspect visuel de l'avancé du traitement. 
+
+
+**FormRecherche**
+
+Dans le constructeur du FormRecherche
+
+Je commence par initialiser:
+
+- l'image logo dans la picturebox
+- le background worker avec ses paramètres 
+- l'emplacement par defaut de sortie du résultat de recherche
+
+
+
+Ensuite nous avons une première boucle foreach qui va boucler dans la liste des Ressources (dont les valeurs sont préalablement saisit) afin de récupérer les noms des environnements
+ filtrer par leurs préfixe (ENV_) et ainsi les ajouter dans la ComboBox cboEnvironnement.
+Puis , je crée tous les évènements aux clicks des composants afin de stocker dans des variables leur valeur à chaque fois que celle-ci seront modifiées. Pour Le bouton emplacement click
+on initialise le folerbrowserdialog pour que l'utilisateur choisisse son emplacement de sortie que l'on va mettre dans la textbox emplacement. 
+Puis arrive le bouton valider dont sa seule tache va être de lancer le background worker(bw) grâçe au RunWorkerAsync. Nous attérissons directement dans le DoWork du bw. C'est ici que va se dérouler tout le
+traitement pour que la barre de progression puisse suivre un cours logique dans l'avancement du traitement. A l'intérieur même de ce DoWork on va retrouver deux traitements bien distinct et complétement
+indépendants l'un de l'autre. Il s'agit de la recherche dans les reports (chkEtat) et de la recherche dans les prostock (chkBdd). Avant de rentrer dans le premier traitement , on initialise une connexion 
+en dynamique selon l'environnement choisit, la chaine de connexion correspondante sera utilisée. Nous arrivons dans le premier cas , si la checkbox etat est cochée (donc nous allons devoir faire la recherche) 
+dans les reports.
+
+*Recherche Etat*
+On commence par chercher dans la bdd la liste des etatActif ( dans Sequana) à l'aide de la requete Req_EtatsActifs (dans les Resources).
+On execute la requête et on boucle sur les résultats l'on stock dans une liste d'EtatsActif. 
+Afin d'avoir une vue de notre liste d'etat actif dans la classe fonction, on passe dans la variable listefonction de la classe fonction la liste des Etats Actifs. 
+Ensuite je concatène le prefixe etat (ETAT_) avec le contenu de la textbox environnement pour obtenir en dynamique le chemin d'accès aux reports correspondant à l'environnement. 
+Par la suite , je crée le dossier racine qui va contenir tout le résultat de la recherche avec une concaténation du nom de recherche et d'un datenow de façon à ne jamais avoir un même dossier recrée même
+si la recherche est la même.
+Je split le résultat dans une liste car on peux avoir plusieurs chemin passé en Ressource.
+On a ensuite une boucle qui va tourner sur le nombre de chemin passé dans les  Ressource Etat_.
+Puis, en splittant le chemin actuel , et à l'aide d'une autre boucle , je recrée l'arborescence du dossier dans lequel je vais chercher les reports.
+C'est juste après avoir fait cela que je lance la fonction de Recherche dans les Reports.
+Nous arrivons donc dans la fonction "RecherchedanslesEtats" qui a en paramètre les variables suivantes: 
+Etat_Ressource ( qui est le chemin actuel de report), Resources.DEFAULT_Extension (le filtre de l'extension des fichier), chemin_Ressource, valeur_rechercher(), DossierRacine, Copie, CSV, Actif
+
+--fonction RecherchedanslesEtats--
+
+
+La fonction va consister à boucler sur tous les fichiers des dossier et des sous dossier du chemin passé en paramètres. C'est au début de cette boucle qui tourne sur tous les fichiers, que l'on fais le
+report progress du bw de façon à pouvoir établir un pourcentage selon le nombren de fichier trouver à partir du GetFile. Après je vérifie que l'extension du fichier est bien un .rpt ou un .RPT 
+et aussi que les dossier dans lequel il se trouve existe dans notre arborescence de façon à le crée si il n'existe pas. Avant d'effectuer le traitement, on vérifie si la case filtre par EtatActif est coché.
+Si c'est le cas on filtre le fichier en vérifiant s'il est présent dans la liste des EtatsActifs effectuée précedemment.On va a ce momment soumettre le fichier à la fonction WritetoXml du projet RptToXml
+afin de transformer le contenu du report en format xml. Après cela, on va faire un file.Move de façon à pouvoir à modifier physiquement le fichier en changeant son extension (on le move au même endroit tout
+en le modifiant) car celle-ci est toujours .RPT . Puis on fais une condition sur la fonction Recherche valeur qui retourne true si le mot rechercher est trouvé dans le report et false sinon. Si return true
+on laisse le fichier xml dans l'emplacement (+ on ajoute les différentes extraction selon les options choisies : CSV , copie fichier), si return false , on supprime le fichier xml . 
+Et le traitement tourne ainsi pour chaque fichier trouvé dans le GetFile AllDirectory.
+
+Une fois le traitement des reports terminé , on passe ensuite au procédure stockée (si toutefois la case bdd est cochée). A l'aide du requête stockée dans les ressources , on va pouvoir obtenir tout les noms
+des procédures stockées dans laquelle on retrouve le nom de recherche. Puis on initialise la connection à la base de donnée et on execute une procédure système qui récupère tout le contenu des
+ procédures stockées.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
