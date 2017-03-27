@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Gestion Incident</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/creative.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top">
+</br>
+</br>
+</br>
+</br>
+<center> <a href="index.html" class="btn btn-primary btn-xl page-scroll">Retour Accueil</a></center>
+
+<section id="Accueil">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <div class="container">
+                <div class="jumbotron">
+                    <center>  <h1>Gestion d'incident : BMC Remedyforce</h1> </center>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    <p><b>Présentation</b> : </br>   </p>
+                    </br>
+                    BMC Remedy est un logiciel de gestion des parcs informatiques (infogérance).
+                    Il permet en particulier aux utilisateurs du parc informatique de faire des demandes concernant leur matériel, demandes qui sont ensuite expédiées aux services d'assistance (help desks) compétents.
+                    Ces demandes sont aussi appelées des tickets. <br>
+                    <b>Pourquoi Remedyforce ?</b> <br>
+                    Lors de mon stage de deuxième année dans l'entreprise Athlon, j'ai assister durant une après-midi un développeur qui s'occupais de résoudre les tickets qu'on lui avais confié.
+                    Les tickets étaient répartient par la chef de l'équipe IT aux MOE. L'équipe s'était d'ailleurs fixer un objectif à ne pas dépasser qui était de 50 tickets. <br>
+                    Le descriptif et l'état d'avancement des tickets se trouvait donc sur l'outil en ligne BMC Remedyforce. Voici un exemple de l'interface d'affichage des tickets de remedyforce.<br>
+                    <br>
+                    <center><img src="img/remedyforce_site.png" class="img-responsive" alt=""></center> <br>
+                    On remarque bien que chaque ticket est caractérisé par plusieurs éléments tel que : <br>
+                    - un numéro ou id d'incident<br>
+                    - un statut qui indique l'état d'avancement du ticket<br>
+                    - l'impact (LOW,MEDIUM,HIGH) qui permet d'évaluer l'importance de la solution à mettre en place.<br>
+                    - l'urgence (LOW,MEDIUM,HIGH) indique l'urgence du ticket en question<br>
+                    -  la Priorité (de 1 à 5 ) précise l'ordre dans lequel il faut résoudre les tickets. La priorité est en général en adéquation avec l'urgence.<br>
+                    - la date d'échéance du ticket<br>
+                    - le support du problème (ordinateur , telephone ..)<br>
+                    - adresse mail du client du ticket<br>
+                    -  la categorie de l'incident<br>
+                    - la date d'ouverture du ticket<br>
+                    - l'id du propriétaire du ticket<br>
+                    <br>
+                    BMC Remedyforce propose un menu ou l'on peux y faire différentes actions. Voici le menu en question.<br> <br>
+                    <center><img src="img/remedyforce_service.png" class="img-responsive" alt=""></center> <br>
+<br>
+                    <b>Résolution du ticket :</b><br>
+                    Voici comment le développeur avec qui j'étais à procédé afin de résoudre le ticket : <br>
+                    - Tout d'abord , en toute logique , il commence par la lecture de l'incident et replace le problème dans son contexte. <br>
+                    - Par la suite, il juge la durée nécessaire à la résolution du ticket afin de savoir s'il à le temps de s'en occuper ou de le remettre à plus tard. <br>
+                    - Une fois ceci fait , il test l'incident avant tout. En effet, le problème ne provient pas obligatoirement d'un bug applicatif du logiciel mais peut être seulement de
+                    l'utilisateur lui même ou de son environnement de travail. <br>
+                    - Il établit un premier diagnostic et propose une solution au problème. <br>
+                    - Après il peut y avoir plusieurs issues comme par exemple l'incident n'est pas évéré  ou alors il ne peut être résolue ou encore l'incident est résolue. <br>
+                    - Le développeur en informe l'auteur du ticket et effectue les modifications de status sur la demande. <br>
+                    <br>
+                    Voici l'interface de création/résolution du ticket.
+                    <br>
+                    <br>
+                    <center><img src="img/remedyforce_ticket.png" class="img-responsive" alt=""></center> <br>
+                    <br>
+                    <br>
+
+
+                    <!-- Contenu -->
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- jQuery -->
+<script src="vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="js/creative.min.js"></script>
+</body>
+</html>

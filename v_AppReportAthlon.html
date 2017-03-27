@@ -57,9 +57,13 @@
 	Le principe de l'application se résume à pouvoir , à l'aide d'une interface WindowsForm réalisé en C# , rechercher dans des <b>reports</b> et dans des <b>procédures stockées</b>  ( dont les chemins d'accès/ connection
 sont passés en paramètres dans les ressources du projet) une donnée recherchée. </br>
         </br>
-        Afin de pouvoir répondre au besoin proposé par le service IT, je disposais d'une doc exposant la demande de besoin. Le projet à été réalisé avec Visual Studio.La solution " AppReport_Athlon" est composée de <b>deux projets </b></br>
+        Afin de pouvoir répondre au besoin proposé par le service IT, je disposais d'une doc d'expression du de besoin que vous pouvez obtenir ci-dessous.
+        <br>
+
+
+        Le projet à été réalisé avec Visual Studio.La solution " AppReport_Athlon" est composée de <b>deux projets </b></br>
 -AppReport_Athlon (entièrement crée par moi) </br>
--RptToXml (fournis par Crystal Report ). Voici le lien du site ou j'ai trouver la librairie "https://www.tektutorialshub.com/download-crystal-reports-for-visual-studio-2015/"</br>
+-RptToXml (fournis par Crystal Report* ).</br>
         </br>
 Le principe technique de l'application se déroule en deux temps . Le premier qui est la récupération des données que l'utilisateur à saisit dans le WindowsForm FormRecherche afin de pouvoir les stocker
 dans des variables et ainsi préparer le traitement selon les options choisies. Puis on va appeler la fonction de traitement de la recherche avec les filtres et les options en paramètre.
@@ -67,13 +71,23 @@ dans des variables et ainsi préparer le traitement selon les options choisies. 
 Le déroulement du processus commence donc dans le FormRecherche. Tout le traitement sera encadré par un <b>background worker</b>  afin de donné un aspect visuel de l'avancé du traitement.  </br></br>
 <b> Interface de l'application :</b> </br>
 <img src="img/screenAppReport.png" class="img-responsive" alt=""> </br>
+        <br>
+        Pour le traitement des reports, le framework utilisé pour la création des reports s'appelle *Crystal Report : Crystal Reports est un progiciel d’informatique décisionnelle qui permet de générer une grande variété
+        de rapports à partir de données informatiques. J'ai donc utilisé la librairie Crystal Report pour mon projet dans laquelle se trouve des methodes qui permettent la convertion du fichier
+        report en format xml. <br>
+        Mais <b>Attention</b> cette librairie ne fait que modifier l'intérieur du fichier , son contenu. Le fichier reste donc un ".rpt". Il était donc de ma charge de modifier dynamiquement
+        l'extension du fichier. <br>
+        Voici le lien du site ou j'ai trouver la librairie "https://www.tektutorialshub.com/download-crystal-reports-for-visual-studio-2015/" <br>
+        <br>
+        Voila un rendu visuel du  lors du traitement en cours des reports. <br>
+        <img src="img/traitement_report.png" class="img-responsive" alt=""> </br>
 
 	</p>
 	</br>
       <br>
       Ici vous pourrez trouver le powerpoint que j'ai réalisé afin de voir les schémas explicatif de l'application. <br>
       <br>
-     <center><a href="util/presentation App_Report_Athlon.pptx" target="_blank" class="btn btn-primary btn-xl sr-button">Telechargez</a></center>
+     <center><a href="util/presentation App_Report_Athlon.pdf" target="_blank" class="btn btn-primary btn-xl sr-button">Telechargez</a></center>
 	
 	
 
